@@ -13,7 +13,6 @@ class StreamTest < Minitest::Test
   end
 
   def test_enabled_via_whitelist
-    skip
     ENV['FM_GENRE_WHITELIST'] = 'abc, def,ghi , jkl'
     stream = FM::Stream.new(FM::Config.new)
 
