@@ -1,8 +1,9 @@
 gem 'minitest', '~> 5.4'
 require 'minitest/autorun'
 require 'minitest/pride'
-require './lib/fm/stream'
 require './lib/fm/config'
+require './lib/fm/genres'
+require './lib/fm/stream'
 
 class StreamTest < Minitest::Test
   def test_all_genres_enabled_by_default

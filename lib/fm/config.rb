@@ -1,17 +1,21 @@
 module FM
   class Config
-    def included_genres
-      @included_genres ||= tokenize(ENV['FM_GENRE_WHITELIST'])
-    end
-
-    def excluded_genres
-      @excluded_genres ||= tokenize(ENV['FM_GENRE_BLACKLIST'])
+    def genres
+      genres ||= Genres.new(genre_list, mode)
     end
 
     private
 
-    def tokenize(s)
-      s.to_s.split(/\s*,\s*/).map { |s| s.strip.to_sym }
+    def mode
+      if ENV['FM_GENRE_WHITELIST'].to_s.empty?
+        :blacklist
+      else
+        :whitelist
+      end
+    end
+
+    def genre_list
+      ENV['FM_GENRE_WHITELIST'] || ENV['FM_GENRE_BLACKLIST']
     end
   end
 end

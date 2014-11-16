@@ -6,10 +6,7 @@ module FM
     end
 
     def genre_enabled?(genre)
-      if !config.included_genres.empty?
-        return config.included_genres.include?(genre)
-      end
-      !config.excluded_genres.include?(genre)
+      config.genres.enabled?(genre)
     end
   end
 end
